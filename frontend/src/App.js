@@ -91,7 +91,7 @@ const stationMarkers = [];
   let interval; // ✅ DECLARE HERE (important)
 
   const loadTrains = () => {
-    axios.get("http://localhost:5050/trains")
+   axios.get("https://elizabeth-line-live-tracker-production.up.railway.app/trains")
       .then(res => {
         let stats = { high: 0, medium: 0, low: 0 };
        
