@@ -86,8 +86,7 @@ const trainMarkers = {};
     zoom: 10,
   });
 
-  const markers = [];
-const stationMarkers = [];
+  
   let interval; // ✅ DECLARE HERE (important)
 
   const loadTrains = () => {
