@@ -39,17 +39,18 @@ const stationCoords = {
 
   function App() {
   const [lineStatus, setLineStatus] = useState("Checking...");
-const [crowdStats, setCrowdStats] = useState({
+
   high: 0,
   medium: 0,
   low: 0
-});
+};
 const predictCrowd = (train) => {
   const hour = new Date().getHours();
 
-  if (hour >= 8 && hour <= 10) return "📈 Increasing";
-  if (hour >= 17 && hour <= 19) return "📈 Increasing";
-  return "📉 Stable";
+  if (hour >= 8 && hour <= 10) return "Increasing";
+  if (hour >= 17 && hour <= 19) return "Increasing";
+
+  return "Stable";
 };
 const [insights, setInsights] = useState({
   busiest: "",
@@ -57,7 +58,7 @@ const [insights, setInsights] = useState({
 });
   const mapContainer = useRef(null);
 const getCrowdLevel = (train) => {
-  const minutes = train.timeToStation / 60;
+ const minutes = (train.timeToStation || 0) / 60;
   const hour = new Date().getHours();
 
   let score = 0;
@@ -77,7 +78,8 @@ const getCrowdLevel = (train) => {
   if (score >= 3) return "🟠 Medium";
   return "🟢 Low";
 };
-const trainMarkers = {};
+const trainMarkers = useRef({});
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
   const map = new mapboxgl.Map({
     container: mapContainer.current,
